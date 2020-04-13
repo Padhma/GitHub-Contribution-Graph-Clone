@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contribution Graph</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/design.css') }}" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1>My Daily Contribution Graph</h1>
+    <div class="graph">
+      <ul class="months">
+        <li>Jan</li>
+        <li>Feb</li>
+        <li>Mar</li>
+        <li>Apr</li>
+        <li>May</li>
+        <li>Jun</li>
+        <li>Jul</li>
+        <li>Aug</li>
+        <li>Sep</li>
+        <li>Oct</li>
+        <li>Nov</li>
+        <li>Dec</li>
+      </ul>
+      <ul class="days">
+        <li>Sun</li>
+        <li>Mon</li>
+        <li>Tue</li>
+        <li>Wed</li>
+        <li>Thu</li>
+        <li>Fri</li>
+        <li>Sat</li>
+      </ul>
+      <ul class="squares">
+        {% for i in range(1,366)  %}
+            {% if data[1][i] %}
+                <li data-toggle="tooltip" data-placement="bottom" data-animation="false" delay="0" title="{{data[1][i]}} on {{data[0][i]}}" data-level="{{data[2][i]}}"></li>
+            {% else %}
+                <li data-toggle="tooltip" data-placement="bottom" data-animation="false" delay="0" title="No Contribution on {{data[0][i]}}" data-level="{{data[2][i]}}"></li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="contributeLegend">
+      <p class="legendTitle">Legend</p>
+      <ul class="legendSquares">
+        <li data-toggle="tooltip" data-placement="bottom" data-animation="false" delay="0" title="No Contribution"></li>
+        <li data-toggle="tooltip" data-placement="bottom" data-animation="false" delay="0" title="Less than 2 Contributions" data-level="1"></li>
+        <li data-toggle="tooltip" data-placement="bottom" data-animation="false" delay="0" title="Less than 4 Contributions" data-level="2"></li>
+        <li data-toggle="tooltip" data-placement="bottom" data-animation="false" delay="0" title="More than 4 Contributions" data-level="3"></li>
+      </ul>
+    </div>
+
+    <script>
+      var squares = document.querySelector(".squares")
+    </script>
+  </body>
+</html>
