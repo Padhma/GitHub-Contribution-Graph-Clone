@@ -1,0 +1,188 @@
+/* Author - https://bitsofco.de/github-contribution-graph-css-grid/ */
+
+/* Grid-related CSS */
+
+:root {
+    --square-size: 15px;
+    --square-gap: 5px;
+    --week-width: calc(var(--square-size) + var(--square-gap));
+  }
+
+  .months { grid-area: months; }
+  .days { grid-area: days; }
+  .squares { grid-area: squares; }
+
+  .graph {
+    display: inline-grid;
+    grid-template-areas: "empty months"
+                         "days squares";
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+  }
+
+  .months {
+    display: grid;
+    grid-template-columns: calc(var(--week-width) * 4) /* Jan */
+                           calc(var(--week-width) * 4) /* Feb */
+                           calc(var(--week-width) * 4) /* Mar */
+                           calc(var(--week-width) * 5) /* Apr */
+                           calc(var(--week-width) * 4) /* May */
+                           calc(var(--week-width) * 4) /* Jun */
+                           calc(var(--week-width) * 5) /* Jul */
+                           calc(var(--week-width) * 4) /* Aug */
+                           calc(var(--week-width) * 4) /* Sep */
+                           calc(var(--week-width) * 5) /* Oct */
+                           calc(var(--week-width) * 4) /* Nov */
+                           calc(var(--week-width) * 5) /* Dec */;
+  }
+
+  .days,
+  .squares {
+    display: grid;
+    grid-gap: var(--square-gap);
+    grid-template-rows: repeat(7, var(--square-size));
+  }
+
+  .squares {
+    grid-auto-flow: column;
+    grid-auto-columns: var(--square-size);
+  }
+
+  /* Legend Styling */
+  .contributeLegend {
+    padding: 0;
+    border: 1px #ff012d solid;
+    margin-top: 30px;
+    margin-right: 8.5%;
+    margin-left: 80%;
+  }
+
+  .legendTitle {
+    font-weight: 300;
+    font-size: 14px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .legendSquares {
+    grid-area: squares;
+  }
+
+  .legendSquares {
+    display: grid;
+    grid-gap: var(--square-gap);
+    grid-template-rows: repeat(1, var(--square-size));
+  }
+
+  .legendSquares {
+    grid-auto-flow: column;
+    grid-auto-columns: var(--square-size);
+  }
+
+  .legendSquares li {
+    background-color: #ffeaed;
+  }
+
+  .legendSquares li[data-level="1"] {
+    background-color: #ffafbd;
+  }
+
+  .legendSquares li[data-level="2"] {
+    background-color: #ff607c;
+  }
+
+  .legendSquares li[data-level="3"] {
+    background-color: #ff123b;
+  }
+
+  /* Other styling */
+
+  body {
+    font-family: 'Verdana';
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Lemonada', cursive;
+    color: #ff4162;
+  }
+
+  .title {
+        font-family: 'Verdana'  !important;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .graph {
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-left: 0px;
+    padding-bottom: 15px;
+    border: 1px #ff012d solid;
+    margin-top: 70px;
+    margin-right:5%;
+    margin-left: 7%;
+  }
+
+
+  .squares li {
+    background-color: #ffeaed;
+  }
+
+  .squares li[data-level="1"] {
+    background-color: #ffafbd;
+  }
+
+  .squares li[data-level="2"] {
+    background-color: #ff607c;
+  }
+
+  .squares li[data-level="3"] {
+    background-color: #ff123b;
+  }
+
+  /* Tooltip */
+
+  .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  }
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  }
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  }
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  }
